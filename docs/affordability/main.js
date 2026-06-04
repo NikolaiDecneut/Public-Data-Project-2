@@ -81,11 +81,19 @@ const themeToggle = document.querySelector("[data-theme-toggle]");
 const margin = { top: 24, right: 30, bottom: 72, left: 88};
 
 function initThemeToggle() {
-  let theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+  // Prefer the page-wide saved theme; fall back to the current attribute
+  // (set by the inline <head> script) or the OS preference.
+  let theme;
+  try { theme = localStorage.getItem("pricedout-theme"); } catch (e) { theme = null; }
+  if (!theme) {
+    theme = document.documentElement.getAttribute("data-theme")
+      || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+  }
   document.documentElement.setAttribute("data-theme", theme);
   themeToggle.addEventListener("click", () => {
     theme = theme === "dark" ? "light" : "dark";
     document.documentElement.setAttribute("data-theme", theme);
+    try { localStorage.setItem("pricedout-theme", theme); } catch (e) {}
   });
 }
 
