@@ -1,3 +1,11 @@
+/* =======================================================================
+   County Affordability Explorer — styles
+   Design tokens (fonts, type scale, spacing, colors) live in :root and are
+   swapped for dark mode via [data-theme="dark"]. Everything below references
+   these variables so the whole chart re-themes from one place.
+   ======================================================================= */
+
+/* ---- Light theme tokens (also the defaults in :root) ---- */
 :root,
 [data-theme="light"] {
   --font-body: 'Satoshi', 'Inter', sans-serif;
@@ -37,6 +45,7 @@
   --radius-lg: 1rem;
 }
 
+/* ---- Dark theme overrides (only the colors change) ---- */
 [data-theme="dark"] {
   --color-bg: #171614;
   --color-surface: #1e1c19;
@@ -54,6 +63,7 @@
   --shadow-sm: 0 14px 36px rgba(0, 0, 0, 0.28);
 }
 
+/* ---- Base / reset ---- */
 *, *::before, *::after { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 body {
@@ -81,6 +91,7 @@ button { cursor: pointer; }
 }
 .skip-link:focus { top: 1rem; }
 
+/* ---- Layout: header + centered page shell ---- */
 .site-header,
 .page-shell {
   width: min(1180px, calc(100% - 2rem));
@@ -136,6 +147,7 @@ h1 {
   padding-bottom: var(--space-10);
 }
 
+/* ---- Cards: controls, summary, and chart panels share this surface look ---- */
 .controls-panel,
 .summary-card,
 .chart-panel {
@@ -237,6 +249,7 @@ h1 {
 .swatch-wa { background: var(--color-primary); }
 .swatch-ca { background: var(--color-secondary); }
 
+/* ---- Chart area, tooltip, axes, and bubbles ---- */
 .chart-wrap {
   position: relative;
   min-height: 620px;
@@ -303,6 +316,7 @@ h1 {
   font-family: var(--font-body);
 }
 
+/* Dashed "break-even" line and its label (default income-vs-hours view). */
 .reference-line {
   stroke: var(--color-accent);
   stroke-width: 2;
@@ -315,6 +329,8 @@ h1 {
   font-weight: 700;
 }
 
+/* One circle per county. .dimmed fades the rest on hover; .active outlines
+   the hovered or pinned bubble. */
 .bubble {
   stroke-width: 1.5;
   transition: opacity 160ms ease;
@@ -343,6 +359,7 @@ h1 {
   font-size: var(--text-base);
 }
 
+/* ---- Responsive: collapse the control/summary grids on smaller screens ---- */
 @media (max-width: 920px) {
   .controls-panel,
   .summary-grid {
@@ -373,6 +390,7 @@ h1 {
   }
 }
 
+/* ---- Respect users who prefer reduced motion: disable animations ---- */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
