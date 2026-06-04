@@ -1,3 +1,16 @@
+//Pull theme colors from the shared design system (CSS variables) so the
+//chart matches the group palette and responds to the dark-mode toggle.
+function themeColor(name, fallback) {
+  const v = getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+  return v || fallback;
+}
+const COLOR_INCOME = themeColor('--color-primary', '#01696f'); // teal — income
+const COLOR_CPI    = themeColor('--color-accent', '#a12c7b');   // magenta — CPI
+const COLOR_MUTED  = themeColor('--color-text-muted', '#6f6b63');
+const COLOR_TEXT   = themeColor('--color-text', '#28251d');
+const COLOR_SURFACE = themeColor('--color-surface', '#fbfbf9');
+const COLOR_BORDER  = themeColor('--color-border', 'rgba(40,37,29,0.12)');
+
 //Call consts.
 const width = 1000;
 const height = 600;
@@ -61,8 +74,8 @@ d3.csv("avgincome-cpi.csv").then(data => {
     svg.append("path")
         .datum(newData)
         .attr("fill", "none")
-        .attr("stroke", "steelblue")
-        .attr("stroke-width", 2)
+        .attr("stroke", COLOR_INCOME)
+        .attr("stroke-width", 2.5)
         .attr("d", incomeLine);
 
     //Create cpi line
@@ -73,17 +86,21 @@ d3.csv("avgincome-cpi.csv").then(data => {
     svg.append("path")
         .datum(newData)
         .attr("fill", "none")
-        .attr("stroke", "coral")
-        .attr("stroke-width", 2)
+        .attr("stroke", COLOR_CPI)
+        .attr("stroke-width", 2.5)
         .attr("d", cpiLine);
         
     //Create box tooltip to float with cursor
     const tooltip = d3.select("body").append("div")
         .style("position", "absolute")
-        .style("background", "white")
-        .style("border", "1px solid #ccc")
-        .style("padding", "6px 10px")
-        .style("font-size", "16px")
+        .style("background", COLOR_SURFACE)
+        .style("color", COLOR_TEXT)
+        .style("border", "1px solid " + COLOR_BORDER)
+        .style("border-radius", "0.75rem")
+        .style("box-shadow", "0 10px 28px rgba(40,37,29,0.12)")
+        .style("padding", "8px 12px")
+        .style("font-size", "14px")
+        .style("font-family", "'Satoshi','Inter',sans-serif")
         .style("display", "none");
 
     //Creates bisector for scrubber
@@ -93,7 +110,7 @@ d3.csv("avgincome-cpi.csv").then(data => {
     const scrubber = svg.append("line")
         .attr("y1", 0)
         .attr("y2", height - margin * 2)
-        .attr("stroke", "#999")
+        .attr("stroke", COLOR_MUTED)
         .attr("stroke-width", 1)
         .attr("stroke-dasharray", "4,4")
         .style("display", "none");
@@ -101,13 +118,13 @@ d3.csv("avgincome-cpi.csv").then(data => {
     //Income dot
     const incomeDot = svg.append("circle")
         .attr("r", 4)
-        .attr("fill", "steelblue")
+        .attr("fill", COLOR_INCOME)
         .style("display", "none");
 
     //CPI dot
     const cpiDot = svg.append("circle")
         .attr("r", 4)
-        .attr("fill", "coral")
+        .attr("fill", COLOR_CPI)
         .style("display", "none");
 
     //Invisible rectangle to capture mouse movement
@@ -154,29 +171,31 @@ d3.csv("avgincome-cpi.csv").then(data => {
         .attr("cx", xScale(last.year))
         .attr("cy", yScale(last.incomeChange))
         .attr("r", 4)
-        .attr("fill", "steelblue");
+        .attr("fill", COLOR_INCOME);
 
     //Create final cpi dot
     svg.append("circle")
         .attr("cx", xScale(last.year))
         .attr("cy", yScale(last.cpiChange))
         .attr("r", 4)
-        .attr("fill", "coral");
+        .attr("fill", COLOR_CPI);
 
     //Show income and cpi legend text with 2024 percentage change
     svg.append("text")
         .attr("x", xScale(last.year))
         .attr("y", yScale(last.incomeChange) -10)
         .attr("text-anchor", "middle")
-        .attr("fill", "steelblue")
+        .attr("fill", COLOR_INCOME)
         .attr("font-size", "16px")
+        .attr("font-weight", "700")
         .text("Avg Income: " + " +" + last.incomeChange.toFixed(1) + "%");
 
     svg.append("text")
         .attr("x", xScale(last.year))
         .attr("y", yScale(last.cpiChange) - 10)
         .attr("text-anchor", "middle")
-        .attr("fill", "coral")
+        .attr("fill", COLOR_CPI)
         .attr("font-size", "16px")
+        .attr("font-weight", "700")
         .text("CPI: " + " +" + last.cpiChange.toFixed(1) + "%");
 });
