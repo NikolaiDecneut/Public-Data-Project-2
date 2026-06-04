@@ -10,9 +10,9 @@ A public-focused data narrative built for **DATA 497 — Advanced Topics in Data
 
 ## Project Overview
 
-This project is a data-journalism–inspired narrative that investigates a single public question: **why does it feel harder than ever to afford a place to live, even for people working full time?**
+This project makes a simple claim: **the cost-of-living crisis is fundamentally a matter of purchasing power.** Across the United States, paychecks have grown — but not fast enough to keep up with the rising cost of everyday life. Nominal wages have climbed for decades, yet they have not kept pace with the accelerating cost of essential needs, most notably rent. The widening gap shows that today's economic landscape is shaped less by the dollar amount households earn, and more by what those earnings can actually buy.
 
-The short answer the data points to is that the cost-of-living crisis is, at its core, a **wage crisis**. Wages have risen over the past several decades, but prices — and rent in particular — have climbed far faster. We tell that story in three connected visualizations that move from the national picture down to individual counties, so a public reader can see the gap both in the aggregate and in their own backyard.
+To support that narrative, we built three visualizations from credible public sources that move from the national picture down to individual counties, so a public reader can see the gap both in the aggregate and in their own backyard. The through-line: **prices rose, but wages didn't keep pace — and nowhere is that gap clearer than in what it now costs to keep a roof overhead.**
 
 The site is published with **GitHub Pages** and built with **D3.js**. Each visualization is an independent, self-contained mini-app embedded into a single master page through iframes, with a shared design system and a page-wide light/dark theme.
 
@@ -22,8 +22,8 @@ The site is published with **GitHub Pages** and built with **D3.js**. Each visua
 
 The page is organized as a single argument that builds from overview to evidence:
 
-1. **Overview — Income over time (Simon).** U.S. median household income has climbed steadily for five decades, painting a picture of slow but real financial progress.
-2. **The pivot — Income vs. prices (Manav).** When income growth is measured against the Consumer Price Index, the gap is stark: from 2000–2024, CPI rose roughly **+82%** while average income rose only about **+17%**. Prices outran paychecks.
+1. **Overview — Income over time (Simon).** Median U.S. household income climbs steadily from its 1967 origin of $54,880 to an $83,730 peak in 2024, painting a picture of relentless financial progress. But raw income tells only half the story — it is merely the baseline for a more pressing question: how far does that income actually stretch in value?
+2. **The pivot — Income vs. prices (Manav).** Comparing average household income against the Consumer Price Index reveals the real issue. Since 2000, CPI has risen about **+82.2%** while average income has grown only about **+16.6%** — and the gap becomes especially pronounced after 2020, when CPI accelerated sharply during the post-pandemic inflation surge while income growth stayed relatively flat.
 3. **The proof on the ground — County affordability (Nikolai).** That national gap becomes concrete at the county level: in Washington and California, the hourly "housing wage" needed to afford a modest rental sits far above the minimum wage, forcing full-time and minimum-wage workers to work well beyond a 40-hour week to keep a roof overhead.
 
 A "so what" statement up front, plus narrative bridges between each chart, carry the reader through the argument rather than simply describing each visual.
@@ -39,17 +39,21 @@ A "so what" statement up front, plus narrative bridges between each chart, carry
 | 3 | County Affordability Explorer | Nikolai Decneut | Wage-vs-rent affordability across WA and CA counties | Interactive bubble chart |
 
 ### County Affordability Explorer (interactive)
-- Each bubble is a county or metro area in **Washington** or **California**; bubble size reflects the number of renter households.
-- Users can **filter by state**, **swap the X and Y axes** between measures (e.g., fair-market rent, minimum wage, housing wage, weekly hours needed), **search for a specific county**, and **click a bubble to pin or unpin** its label.
+Each bubble represents a single county or metro area across Washington and California, plotting what renters earn against what their housing actually costs. The central measure is the **housing wage** — the hourly pay a full-time worker would need to afford a modest rental without spending more than 30% of their income on housing.
+
+- Bubble size reflects the number of renter households.
+- Users can **filter by state**, **swap the X and Y axes** between measures (fair-market rent, minimum wage, housing wage, hours required to afford a home), **search for a specific county**, and **click a bubble to pin or unpin** its label.
 - Built-in light/dark theming matches the rest of the page.
+
+County by county, the same pattern surfaces: the wage a household needs to afford housing has drifted far beyond what minimum-wage and many full-time workers actually bring home, turning a stable home into something a single paycheck can no longer reliably secure.
 
 ---
 
 ## Key Findings
 
-- **Income grew, but slowly.** Median household income rose from roughly $54,880 (1967) to about $83,730 (2024).
-- **Prices outran wages.** From 2000–2024, CPI rose ~**82%** while average income rose only ~**17%**.
-- **A full-time wage no longer covers rent.** To afford an average two-bedroom rental, a worker needs about **$34.47/hr in Washington** and **$49.61/hr in California**, against state minimum wages of **$16.66** and **$16.50** respectively — equivalent to roughly **99 hours/week in WA** and **120 hours/week in CA** at minimum wage.
+- **Income grew, but slowly.** Median household income rose from $54,880 (1967) to $83,730 (2024).
+- **Prices outran wages.** Since 2000, CPI rose ~**82.2%** while average income rose only ~**16.6%**, with the divergence accelerating after the post-2020 inflation surge.
+- **A full-time wage no longer covers rent.** To afford an average two-bedroom rental, a worker needs about **$34.47/hr in Washington** and **$49.61/hr in California**, against state minimum wages of **$16.66** and **$16.50** respectively — equivalent to roughly **99 hours/week in WA** (about two and a half jobs) and **120 hours/week in CA** (nearly three jobs) at minimum wage.
 
 ---
 
