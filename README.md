@@ -91,32 +91,16 @@ Each visualization lives in its own folder as a standalone D3 app and is embedde
 
 ## Tools & Technologies
 
-- **Visualization:** D3.js (v7)
+- **Visualization:** D3.js
 - **Languages:** JavaScript, HTML, CSS
 - **Data prep:** Excel / CSV (sourced from NLIHC, U.S. Census, and BLS data)
 - **Hosting:** GitHub Pages (source: `main` branch, `/docs` folder)
 - **Version control:** Git & GitHub
 - **Design system:** Shared CSS custom properties (Satoshi typeface, teal/gold/magenta palette) with a localStorage-backed light/dark theme
+- **File sharing & Team communication:** Google Drive with labeled files and tabs within for different tasks, Discord Server for calls, messages, and sending links.
 
 ---
 
-## Running Locally
-
-Because the visuals load CSV files with `fetch`, the site must be served over HTTP (opening `index.html` directly via `file://` will fail due to browser CORS rules).
-
-```bash
-# clone the repo
-git clone https://github.com/NikolaiDecneut/Public-Data-Project-2.git
-cd Public-Data-Project-2/docs
-
-# serve with any static server, e.g.:
-python3 -m http.server 8000
-# then open http://localhost:8000 in your browser
-```
-
-VS Code's **Live Preview** / **Live Server** extension also works well.
-
----
 
 ## Data Sources
 
