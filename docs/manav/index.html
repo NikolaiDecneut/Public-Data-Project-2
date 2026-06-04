@@ -3,7 +3,15 @@
     <head>
         <meta charset="utf-8">
         <title>Income vs CPI</title>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+3">
+        <!-- Self-apply the page-wide theme BEFORE the chart's JS reads its colors -->
+        <script>
+          try {
+            var t = localStorage.getItem("pricedout-theme") || "light";
+            document.documentElement.setAttribute("data-theme", t);
+          } catch (e) {}
+        </script>
+        <link rel="preconnect" href="https://api.fontshare.com">
+        <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="./style.css">
     </head>
     <body>
