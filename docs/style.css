@@ -175,6 +175,11 @@ section.prose:has(.authors) { max-width: 1180px; }
 .author-name { margin: 0; font-weight: 700; }
 .author-role { margin: var(--space-2) 0; color: var(--color-text-muted); font-size: var(--text-sm); }
 .author-link { font-size: var(--text-sm); word-break: break-all; }
+.project-repo {
+  margin-top: var(--space-5);
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+}
 
 /* --------------------------- Visual blocks --------------------------- */
 .visual-block {
