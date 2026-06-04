@@ -1,3 +1,17 @@
+/* =======================================================================
+   County Affordability Explorer — chart logic
+   Reads the 2025 Out of Reach datasets (WA + CA) and draws an interactive
+   bubble chart comparing renter income, housing wage, and rent-burden
+   measures. Users can filter by state, swap the axes, search a county, and
+   pin labels. Built with D3 v7.
+   ======================================================================= */
+
+/* METRICS: every measure a user can put on the X or Y axis.
+   - key:        exact column header in the CSV files
+   - label:      full text shown on axis labels and dropdowns
+   - shortLabel: compact text used in the chart title
+   - format:     how the value is displayed (currency, hours, ratio)
+   - type:       drives axis tick formatting */
 const METRICS = {
     income: {
         key: "Estimated Median Renter Household Income",
@@ -48,21 +62,25 @@ const METRICS = {
     }
 };
 
+// Which metrics the chart starts on before the user changes anything.
 const DEFAULTS = {
     xMetric: "income",
     yMetric: "minHours"
 };
 
+// Single source of truth for the chart. Every control updates this object,
+// then calls render() to redraw from it.
 const state = {
-  data: [],
-  filtered: [],
-  pinned: new Set(),
-  xMetric: DEFAULTS.xMetric,
-  yMetric: DEFAULTS.yMetric,
-  stateFilter: "all",
-  search: ""
+  data: [],                    // all parsed counties (WA + CA)
+  filtered: [],                // counties currently passing the filters
+  pinned: new Set(),           // county ids whose labels the user pinned
+  xMetric: DEFAULTS.xMetric,   // metric currently on the X axis
+  yMetric: DEFAULTS.yMetric,   // metric currently on the Y axis
+  stateFilter: "all",          // "all" | "WA" | "CA"
+  search: ""                    // county-name search text
 };
 
+// Cache references to the DOM elements the chart reads from / writes to.
 const svg = d3.select("#chart");
 const tooltip = d3.select("#tooltip");
 const chartWrap = document.getElementById("chartWrap");
@@ -78,8 +96,10 @@ const yMetricEl = document.getElementById("yMetric");
 const countySearchEl = document.getElementById("countySearch");
 const themeToggle = document.querySelector("[data-theme-toggle]");
 
+// Space reserved around the plotting area for axes and labels.
 const margin = { top: 24, right: 30, bottom: 72, left: 88};
 
+// Apply the saved light/dark theme and wire up the toggle button.
 function initThemeToggle() {
   // Prefer the page-wide saved theme; fall back to the current attribute
   // (set by the inline <head> script) or the OS preference.
@@ -97,6 +117,7 @@ function initThemeToggle() {
   });
 }
 
+// Fill an axis dropdown with one <option> per metric in METRICS.
 function populateMetricSelect(selectEl, selectedValue) {
   Object.entries(METRICS).forEach(([value, meta]) => {
     const option = document.createElement("option");
@@ -107,6 +128,8 @@ function populateMetricSelect(selectEl, selectedValue) {
   });
 }
 
+// Turn a raw CSV string into a number, stripping $, commas, and % signs.
+// Returns null for blanks or non-numeric values so they can be filtered out.
 function parseNumber(value) {
   if (value == null || value === "" || value === "-") return null;
   const cleaned = String(value).replace(/[$,%]/g, "").trim();
@@ -114,11 +137,16 @@ function parseNumber(value) {
   return Number.isFinite(parsed) ? parsed : null;
 }
 
+// Drop a trailing " County" so labels read "King" instead of "King County".
 function cleanCountyName(name) {
   return String(name || "").replace(/ County$/i, "").trim();
 }
 
+// Convert one CSV row into a clean county object.
+// Returns null for rows we skip (statewide/metro totals, or rows missing
+// any of the values the chart needs to plot a bubble).
 function rowToCounty(row, fallbackState) {
+  // Keep only county-level rows; skip state and metro summary rows.
   const geoValue = String(row.GEO || "").trim().toUpperCase();
   if (geoValue !== "4" && geoValue !== "COUNTY") return null;
 
@@ -138,13 +166,16 @@ function rowToCounty(row, fallbackState) {
     rentBurden: parseNumber(row[METRICS.rentBurden.key])
   };
 
+  // Drop any county missing a core value so the chart never plots a half-row.
   const required = [parsed.renterHouseholds, parsed.income, parsed.housingWage, parsed.minHours, parsed.minJobs];
   if (required.some(v => v == null)) return null;
 
+  // Unique id (state + county) used for D3 data joins and pin tracking.
   parsed.id = `${parsed.state}-${parsed.county}`;
   return parsed;
 }
 
+// Load both CSVs in parallel, parse each row, and combine into one array.
 function loadData() {
   return Promise.all([
     d3.csv("washington.csv"),
@@ -156,6 +187,7 @@ function loadData() {
   });
 }
 
+// Recompute state.filtered from the current state filter and search text.
 function updateFilteredData() {
   const searchTerm = state.search.trim().toLowerCase();
   state.filtered = state.data.filter(d => {
@@ -165,6 +197,8 @@ function updateFilteredData() {
   });
 }
 
+// Color a bubble by state: teal for Washington, gold for California.
+// Pulls the actual hex from the active theme's CSS variables.
 function getColor(d) {
   const styles = getComputedStyle(document.documentElement);
   return d.state === "WA"
@@ -172,14 +206,18 @@ function getColor(d) {
     : styles.getPropertyValue("--color-secondary").trim();
 }
 
+// Format a value using its metric's formatter (or "N/A" if missing).
 function formatMetric(metricKey, value) {
   return value == null ? "N/A" : METRICS[metricKey].format(value);
 }
 
+// Min/max of a metric across the data — used to build axis scales.
 function metricExtent(data, metricKey) {
   return d3.extent(data, d => d[metricKey]);
 }
 
+// Refresh the three summary cards above the chart (count, highest burden,
+// and largest renter market) for whatever counties are currently shown.
 function updateSummary() {
   countShown.textContent = d3.format(",")(state.filtered.length);
 
@@ -198,9 +236,13 @@ function updateSummary() {
   largestMarket.textContent = `${largestCounty.county}, ${largestCounty.state} (${d3.format(",")(largestCounty.renterHouseholds)} renters)`;
 }
 
+// Compute the dashed "break-even" reference line, shown only on the default
+// income-vs-hours view. It maps each income level to the weekly hours a
+// minimum-wage worker would need to afford rent at that income.
 function getReferenceLineValues(xMetric, yMetric, xDomain, yDomain) {
   if (xMetric !== "income" || yMetric !== "minHours") return null;
 
+  // income -> affordable monthly rent (30%) -> weekly hours at $16.66/hr
   const incomeToHours = income => ((income / 12) / 0.3) / 4 / 16.66;
   const x1 = xDomain[0];
   const x2 = xDomain[1];
@@ -214,6 +256,8 @@ function getReferenceLineValues(xMetric, yMetric, xDomain, yDomain) {
   return null;
 }
 
+// Main draw routine: clears the SVG and rebuilds the whole chart from the
+// current state. Called on load and after every control change or resize.
 function render() {
   updateFilteredData();
   updateSummary();
@@ -234,6 +278,7 @@ function render() {
 
   const root = svg.append("g").attr("transform", `translate(${margin.left},${margin.top})`);
 
+  // Nothing to plot (e.g. a search with no matches): show a friendly message.
   if (!state.filtered.length) {
     root.append("text")
       .attr("class", "empty-state")
@@ -244,6 +289,8 @@ function render() {
     return;
   }
 
+  // Build the scales from the data range (with a little padding on X/Y).
+  // Bubble radius uses a square-root scale so area — not radius — maps to size.
   const xDomain = metricExtent(state.filtered, state.xMetric);
   const yDomain = metricExtent(state.filtered, state.yMetric);
   const sizeDomain = d3.extent(state.filtered, d => d.renterHouseholds);
@@ -264,6 +311,7 @@ function render() {
     .domain(sizeDomain)
     .range([5, 34]);
 
+  // Faint background gridlines (axes with no labels, full-width tick marks).
   const gridX = d3.axisBottom(xScale).ticks(width < 700 ? 5 : 7).tickSize(-innerHeight).tickFormat("");
   const gridY = d3.axisLeft(yScale).ticks(height < 560 ? 5 : 7).tickSize(-innerWidth).tickFormat("");
 
@@ -328,9 +376,11 @@ function render() {
       .text("Break-even line");
   }
 
+  // Two layers: bubbles underneath, county labels on top so they stay legible.
   const bubbleLayer = root.append("g").attr("class", "bubble-layer");
   const labelLayer = root.append("g").attr("class", "label-layer");
 
+  // Draw one circle per county, animating the radius in from 0.
   bubbleLayer.selectAll("circle")
     .data(state.filtered, d => d.id)
     .join("circle")
@@ -346,6 +396,8 @@ function render() {
     .duration(650)
     .attr("r", d => radiusScale(d.renterHouseholds));
 
+  // Hover = highlight this bubble, dim the rest, and show a tooltip.
+  // Click = pin/unpin the county's label.
   bubbleLayer.selectAll("circle")
     .on("mousemove", function(event, d) {
       const current = d3.select(this);
@@ -376,6 +428,7 @@ function render() {
       render();
     });
 
+  // Always label the 4 highest-burden counties, plus any the user pinned.
   const autoLabels = state.filtered
     .slice()
     .sort((a, b) => d3.descending(a.minJobs, b.minJobs) || d3.descending(a.renterHouseholds, b.renterHouseholds))
@@ -392,6 +445,7 @@ function render() {
     .text(d => d.county);
 }
 
+// Wire up every control so changing it updates state and redraws the chart.
 function attachEvents() {
   stateFilterEl.addEventListener("change", e => {
     state.stateFilter = e.target.value;
@@ -418,6 +472,7 @@ function attachEvents() {
   themeToggle.addEventListener("click", () => setTimeout(render, 0));
 }
 
+// Entry point: set up theme + controls, load the data, then draw.
 async function init() {
   initThemeToggle();
   populateMetricSelect(xMetricEl, DEFAULTS.xMetric);
