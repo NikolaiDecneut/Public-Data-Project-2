@@ -1,0 +1,63 @@
+/* Styling For Median Income Data Line Chart */
+
+/* Body Styling For Base Background and Typography */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Font Family Designation */
+    background-color: whitesmoke; /* Shade of White, whitesmoke Background Color */
+    margin: 0;
+    padding: 40px 20px;
+    display: flex;
+    justify-content: center; /* Function to Center Content */
+}
+
+/* Container Styling For Space That Holds Chart and Text */
+.container {
+    max-width: 1050px; /* Maximum Width Set at 1050px */
+    background-color: white; /* White Background Color */
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+}
+
+/* Styling For Main Header */
+h1 {
+    margin-top: 0;
+    font-size: 2.2rem; /* Font Size of 2.2rem */
+    color: black; /* Main Header Black Fill Color */
+    margin-bottom: 10px;
+    text-align: center; /* Function Center Text */
+}
+
+/* Styling For Sub-Heading Description Text */
+.description {
+    font-size: 1.1rem; /* Font Size of 1.1rem */
+    line-height: 1.6;
+    color: dimgray; /* Sub Header Dim-Gray Fill Color */
+    margin-bottom: 40px;
+    text-align: center; /* Function to Center Text */
+    background-color: whitesmoke; /* White-Smoke Background Color */
+    padding: 20px;                
+    border-radius: 8px; 
+}
+
+/* Styling Functions to Color Lines of X Axis and Y Axis Silver 8 */
+.x-axis path,
+.x-axis line,
+.y-axis path,
+.y-axis line {
+    stroke: silver; /* Stroke Color of Silver */
+}
+
+/* Styling For Number on Axes */
+.x-axis text,
+.y-axis text {
+    font-size: 12px; /* Font Size of 12px */
+    fill: dimgray; /* Dim-Gray Fill Color */
+}
+
+/* Bold Styling For X Axis and Y Axis Labels */
+.axis-label {
+    font-weight: bold; /* Bold Font-Weight */
+    fill: darkslategray; /* Dark-Slate-Gray Fill Color */
+    font-size: 14px; /* Font Size of 14px */
+}
