@@ -15,6 +15,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
+  <!-- D3 v7 (charting library) loads first, then our chart code. -->
   <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
   <script defer src="main.js"></script>
 </head>
@@ -37,6 +38,8 @@
   </header>
 
   <main id="main-content" class="page-shell">
+    <!-- Controls: state filter, X/Y axis pickers, and county search.
+         main.js fills the two axis dropdowns and listens for changes. -->
     <section class="controls-panel" aria-label="Chart controls">
       <div class="control-group">
         <label for="stateFilter">State view</label>
@@ -63,6 +66,8 @@
       </div>
     </section>
 
+    <!-- Summary cards: filled by updateSummary() in main.js based on the
+         counties currently visible (count, highest burden, largest market). -->
     <section class="summary-grid" aria-label="Chart summary">
       <article class="summary-card">
         <p class="summary-label">Counties shown</p>
@@ -78,6 +83,8 @@
       </article>
     </section>
 
+    <!-- The chart itself: title/subtitle, the WA/CA legend, and the SVG that
+         D3 draws the bubbles into. The tooltip floats over the chart on hover. -->
     <section class="chart-panel">
       <div class="chart-header">
         <div>
@@ -90,6 +97,8 @@
         </div>
       </div>
 
+      <!-- D3 renders the bubble chart into this empty <svg>; the tooltip is
+           positioned by main.js as the user moves over each bubble. -->
       <div id="chartWrap" class="chart-wrap">
         <svg id="chart" role="img" aria-labelledby="chartTitle chartSubtitle"></svg>
         <div id="tooltip" class="tooltip" role="status" aria-live="polite"></div>
