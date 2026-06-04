@@ -2,8 +2,8 @@
    County Affordability Explorer — chart logic
    Reads the 2025 Out of Reach datasets (WA + CA) and draws an interactive
    bubble chart comparing renter income, housing wage, and rent-burden
-   measures. Users can filter by state, swap the axes, search a county, and
-   pin labels. Built with D3 v7.
+   measures. Viewers can filter by state, swap the axis, search a county, and
+   pin labels. Built with D3.
    ======================================================================= */
 
 /* METRICS: every measure a user can put on the X or Y axis.
@@ -101,7 +101,7 @@ const margin = { top: 24, right: 30, bottom: 72, left: 88};
 
 // Apply the saved light/dark theme and wire up the toggle button.
 function initThemeToggle() {
-  // Prefer the page-wide saved theme; fall back to the current attribute
+  // Prefer the page wide saved theme; fall back to the current attribute
   // (set by the inline <head> script) or the OS preference.
   let theme;
   try { theme = localStorage.getItem("pricedout-theme"); } catch (e) { theme = null; }
@@ -143,10 +143,10 @@ function cleanCountyName(name) {
 }
 
 // Convert one CSV row into a clean county object.
-// Returns null for rows we skip (statewide/metro totals, or rows missing
+// Returns null for rows skipped (statewide/metro totals, or rows missing
 // any of the values the chart needs to plot a bubble).
 function rowToCounty(row, fallbackState) {
-  // Keep only county-level rows; skip state and metro summary rows.
+  // Keep only county level rows; skip state and metro summary rows.
   const geoValue = String(row.GEO || "").trim().toUpperCase();
   if (geoValue !== "4" && geoValue !== "COUNTY") return null;
 
@@ -488,4 +488,4 @@ async function init() {
   }
 }
 
-init();
+init(); //If you read this far you are a really cool person :)
