@@ -22,9 +22,9 @@ The site is published with **GitHub Pages** and built with D3.js. Each visualiza
 
 The page is organized as a single argument that builds from overview to evidence:
 
-1. **Overview — Income over time (Simon).** Median U.S. household income climbs steadily from its 1967 origin of $54,880 to an $83,730 peak in 2024, painting a picture of relentless financial progress. But raw income tells only half the story — it is merely the baseline for a more pressing question: how far does that income actually stretch in value?
-2. **The pivot — Income vs. prices (Manav).** Comparing average household income against the Consumer Price Index reveals the real issue. Since 2000, CPI has risen about **+82.2%** while average income has grown only about **+16.6%** — and the gap becomes especially pronounced after 2020, when CPI accelerated sharply during the post-pandemic inflation surge while income growth stayed relatively flat.
-3. **The proof on the ground — County affordability (Nikolai).** That national gap becomes concrete at the county level: in Washington and California, the hourly "housing wage" needed to afford a modest rental sits far above the minimum wage, forcing full-time and minimum-wage workers to work well beyond a 40-hour week to keep a roof overhead.
+1. **Overview — Income over time (Simon).** Median U.S. household income climbs steadily from its 1967 origin of $54,880 to an $83,730 peak in 2024, painting a picture of relentless financial progress. But raw income tells only half the story, it is merely the baseline for a more pressing question: how far does that income actually stretch in value?
+2. **The pivot — Income vs. prices (Manav).** Comparing average household income against the Consumer Price Index reveals the real issue. Since 2000, CPI has risen about **+82.2%** while average income has grown only about **+16.6%** and the gap becomes especially pronounced after 2020, when CPI accelerated sharply during the post pandemic inflation surge while income growth stayed relatively flat.
+3. **The proof on the ground — County affordability (Nikolai).** That national gap becomes concrete at the county level: in Washington and California, the hourly "housing wage" needed to afford a modest apartment sits far above the minimum wage, forcing full time and minimum wage workers to work well beyond a 40-hour week to keep a roof overhead.
 
 A "so what" statement up front, plus narrative bridges between each chart, carry the reader through the argument rather than simply describing each visual.
 
