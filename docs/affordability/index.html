@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>County Affordability Explorer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+  <script defer src="main.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+
+  <header class="site-header">
+    <div class="header-copy">
+    
+      <h1>County Affordability Explorer</h1>
+      <p class="lede">
+        Compare Washington and California counties using renter income, housing wage,
+        and rent-burden indicators from the 2025 Out of Reach datasets.
+      </p>
+    </div>
+
+    <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch color theme">
+      <span aria-hidden="true">◐</span>
+    </button>
+  </header>
+
+  <main id="main-content" class="page-shell">
+    <section class="controls-panel" aria-label="Chart controls">
+      <div class="control-group">
+        <label for="stateFilter">State view</label>
+        <select id="stateFilter">
+          <option value="all">Washington + California</option>
+          <option value="WA">Washington only</option>
+          <option value="CA">California only</option>
+        </select>
+      </div>
+
+      <div class="control-group">
+        <label for="xMetric">X-axis</label>
+        <select id="xMetric"></select>
+      </div>
+
+      <div class="control-group">
+        <label for="yMetric">Y-axis</label>
+        <select id="yMetric"></select>
+      </div>
+
+      <div class="control-group search-group">
+        <label for="countySearch">Search county</label>
+        <input id="countySearch" type="search" placeholder="Ex. King, Orange, Santa Cruz" />
+      </div>
+    </section>
+
+    <section class="summary-grid" aria-label="Chart summary">
+      <article class="summary-card">
+        <p class="summary-label">Counties shown</p>
+        <p id="countShown" class="summary-value">0</p>
+      </article>
+      <article class="summary-card">
+        <p class="summary-label">Highest burden</p>
+        <p id="topBurden" class="summary-value">—</p>
+      </article>
+      <article class="summary-card">
+        <p class="summary-label">Largest renter market</p>
+        <p id="largestMarket" class="summary-value">—</p>
+      </article>
+    </section>
+
+    <section class="chart-panel">
+      <div class="chart-header">
+        <div>
+          <h2 id="chartTitle">County comparison</h2>
+          <p id="chartSubtitle" class="chart-subtitle"></p>
+        </div>
+        <div class="legend" aria-label="State legend">
+          <span class="legend-item"><span class="legend-swatch swatch-wa"></span>Washington</span>
+          <span class="legend-item"><span class="legend-swatch swatch-ca"></span>California</span>
+        </div>
+      </div>
+
+      <div id="chartWrap" class="chart-wrap">
+        <svg id="chart" role="img" aria-labelledby="chartTitle chartSubtitle"></svg>
+        <div id="tooltip" class="tooltip" role="status" aria-live="polite"></div>
+      </div>
+
+      <p class="chart-note">
+        Bubble size represents renter households. Click a bubble to pin or unpin its county label.
+        All data is from the 2025 Out of Reach report by the National Low Income Housing Coalition. (https://nlihc.org/oor/state/al)
+      </p>
+    </section>
+  </main>
+</body>
+</html>
