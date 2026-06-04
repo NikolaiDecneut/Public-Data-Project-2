@@ -14,7 +14,7 @@ This project makes a simple claim: **the cost-of-living crisis is fundamentally 
 
 To support that narrative, we built three visualizations from credible public sources that move from the national picture down to individual counties, so a public reader can see the gap both in the aggregate and in their own backyard. The through-line: **prices rose, but wages didn't keep pace — and nowhere is that gap clearer than in what it now costs to keep a roof overhead.**
 
-The site is published with **GitHub Pages** and built with **D3.js**. Each visualization is an independent, self-contained mini-app embedded into a single master page through iframes, with a shared design system and a page-wide light/dark theme.
+The site is published with **GitHub Pages** and built with D3.js. Each visualization is an independent, self contained mini app embedded into a single master page through iframes, with a shared design system and a page wide light/dark theme.
 
 ---
 
