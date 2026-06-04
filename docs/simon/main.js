@@ -1,5 +1,18 @@
 // Median Income Data Line Chart
 
+// Pull theme colors from the shared design system (CSS variables) so the
+// chart matches the group palette and responds to the dark-mode toggle.
+function themeColor(name, fallback) {
+  const v = getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+  return v || fallback;
+}
+const COLOR_LINE = themeColor('--color-primary', '#01696f');   // teal line
+const COLOR_AREA = themeColor('--color-primary', '#01696f');   // teal fill (low opacity)
+const COLOR_DOT  = themeColor('--color-primary', '#01696f');   // teal dots
+const COLOR_SURFACE = themeColor('--color-surface', '#fbfbf9');
+const COLOR_GRID = themeColor('--color-border', 'rgba(40,37,29,0.12)');
+const COLOR_TEXT = themeColor('--color-text', '#28251d');
+
 // Define The Dimensions and Margins For The Chart
 const margin = {top: 40, right: 50, bottom: 60, left: 80}, // const Margin Values
       width = 1000 - margin.left - margin.right, // Dimension Width of 1000
@@ -99,8 +112,8 @@ d3.text("intablea2.csv").then(function(rawText) { // CSV Load
     // Function to Draw The Soft Shaded Green Area
     svg.append("path")
       .datum(dataset)
-      .attr("fill", "honeydew") // Shade of Green, Honeydew Fill Color
-      .attr("opacity", 0.6) // Line For Opacity of 0.6
+      .attr("fill", COLOR_AREA) // teal area fill (group palette)
+      .attr("opacity", 0.12) // soft tint so the line reads clearly
       .attr("d", area);
     
     // const Function to Define Line Path
@@ -112,7 +125,7 @@ d3.text("intablea2.csv").then(function(rawText) { // CSV Load
     svg.append("path")
       .datum(dataset)
       .attr("fill", "none")
-      .attr("stroke", "forestgreen") // Shade of Green, Forest Green Stroke Color
+      .attr("stroke", COLOR_LINE) // teal line (group palette)
       .attr("stroke-width", 3) // Line stroke-width of 3
       .attr("d", line);
 
@@ -121,8 +134,8 @@ d3.text("intablea2.csv").then(function(rawText) { // CSV Load
       .data(dataset)
       .enter()
       .append("circle") // Line to State Circle
-        .attr("fill", "darkgreen") // Shade of Green, Dark Green Fill Color
-        .attr("stroke", "white") // Stroke Color of White
+        .attr("fill", COLOR_DOT) // teal dots (group palette)
+        .attr("stroke", COLOR_SURFACE) // surface-colored ring
         .attr("stroke-width", 1.5) // Circle stroke-width of 1.5
         .attr("cx", d => x(d.year))
         .attr("cy", d => y(d.income))
@@ -140,7 +153,7 @@ d3.text("intablea2.csv").then(function(rawText) { // CSV Load
         .attr("y1", d => y(d.income) - 6)
         .attr("x2", d => x(d.year))
         .attr("y2", d => y(d.income) - 28)
-        .attr("stroke", "silver") // Stroke Color of Silver
+        .attr("stroke", COLOR_GRID) // muted connector (group palette)
         .attr("stroke-width", 1.5) // stroke-width of 1.5
         .attr("stroke-dasharray", "3,3"); // .attr to Make Line Dashed
 
@@ -153,7 +166,7 @@ d3.text("intablea2.csv").then(function(rawText) { // CSV Load
         .attr("y", d => y(d.income) - 32)
         .attr("text-anchor", "middle") // Line to Anchor The Text to The Middle
         .attr("font-size", "11px") // Label Font-Size of 11px
-        .attr("fill", "darkslategray") // Shade of Gray, Dark-Slate-Gray Fill Color
+        .attr("fill", COLOR_TEXT) // text color (group palette)
         .attr("font-weight", "bold") // Line to Make Font Have a Bold Weight
         .text(d => "$" + d.income.toLocaleString()); // .text Function to Add Commas to Numbers
 
