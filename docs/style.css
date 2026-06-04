@@ -87,7 +87,7 @@ a { color: var(--color-primary); }
 /* ----------------------------- Layout shells ----------------------------- */
 .site-header,
 .page-shell {
-  width: min(900px, calc(100% - 2rem));
+  width: min(1180px, calc(100% - 2rem));
   margin: 0 auto;
 }
 
@@ -177,8 +177,12 @@ h1 { font-size: var(--text-xl); max-width: 18ch; }
 .visual-block {
   display: grid;
   gap: var(--space-6);
+  justify-items: center;
 }
-.visual-intro { max-width: 68ch; }
+/* Visual frames span the full page width so charts have room to breathe */
+.visual-frame { width: 100%; }
+/* Narrative intros above each visual stay at a readable width, left-aligned */
+.visual-intro { width: 100%; max-width: 72ch; margin-right: auto; }
 .visual-kicker {
   margin: 0 0 var(--space-2);
   text-transform: uppercase;
@@ -230,7 +234,7 @@ h1 { font-size: var(--text-xl); max-width: 18ch; }
 
 /* ----------------------------- Footer ----------------------------- */
 .site-footer {
-  width: min(900px, calc(100% - 2rem));
+  width: min(1180px, calc(100% - 2rem));
   margin: 0 auto;
   padding: var(--space-8) 0 var(--space-12);
   color: var(--color-text-faint);
