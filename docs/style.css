@@ -160,7 +160,10 @@ h1 { font-size: var(--text-xl); max-width: 18ch; }
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: var(--space-4);
   margin-top: var(--space-6);
+  max-width: none;
 }
+/* Let the authors section span full width even inside a .prose block */
+section.prose:has(.authors) { max-width: 1180px; }
 
 .author-card {
   background: var(--color-surface);
