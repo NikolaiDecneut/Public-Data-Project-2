@@ -54,42 +54,10 @@
       </p>
     </section>
 
-    <!-- ===================== VISUAL 1 — AFFORDABILITY (Nikolai) ===================== -->
-    <section class="visual-block" aria-label="County Affordability Explorer">
-      <div class="visual-intro prose">
-        <p class="visual-kicker">Visual 1 · Nikolai Decneut</p>
-        <h2 class="section-heading">How many hours must you work to afford rent where you live?</h2>
-        <p>
-          <!-- NARRATIVE before the affordability visual -->
-          narrative text here — set up the interactive map/chart: invite the reader to
-          find their own county and see the wage-vs-rent gap made local and personal.
-        </p>
-      </div>
-
-      <div class="visual-frame">
-        <!-- VISUAL CODE: this iframe loads your interactive County Affordability Explorer -->
-        <iframe
-          class="viz"
-          src="affordability/index.html"
-          title="County Affordability Explorer (interactive)"
-          loading="lazy"
-          style="height: 1500px;"></iframe>
-      </div>
-    </section>
-
-    <!-- ===================== NARRATIVE BETWEEN VISUALS 1 → 2 ===================== -->
-    <section class="prose" aria-label="Transition">
-      <p>
-        <!-- NARRATIVE bridging affordability → income -->
-        narrative text here — bridge from "rent is unaffordable today" to "but how have
-        wages actually moved over time?" Lead the reader into the income trend.
-      </p>
-    </section>
-
-    <!-- ===================== VISUAL 2 — MEDIAN INCOME (Simon) ===================== -->
+    <!-- ===================== VISUAL 1 — MEDIAN INCOME (Simon) ===================== -->
     <section class="visual-block" aria-label="Median Household Income">
       <div class="visual-intro prose">
-        <p class="visual-kicker">Visual 2 · Simon Mehari</p>
+        <p class="visual-kicker">Visual 1 · Simon Mehari</p>
         <h2 class="section-heading">Earning power has grown — but slowly</h2>
         <p>
           <!-- NARRATIVE before Simon's visual -->
@@ -109,7 +77,7 @@
       </div>
     </section>
 
-    <!-- ===================== NARRATIVE BETWEEN VISUALS 2 → 3 ===================== -->
+    <!-- ===================== NARRATIVE BETWEEN VISUALS 1 → 2 ===================== -->
     <section class="prose" aria-label="Transition">
       <p>
         <!-- NARRATIVE bridging income → CPI -->
@@ -118,10 +86,10 @@
       </p>
     </section>
 
-    <!-- ===================== VISUAL 3 — CPI vs INCOME (Manav) ===================== -->
+    <!-- ===================== VISUAL 2 — CPI vs INCOME (Manav) ===================== -->
     <section class="visual-block" aria-label="Consumer Price Index vs Income">
       <div class="visual-intro prose">
-        <p class="visual-kicker">Visual 3 · Manav Lakhani</p>
+        <p class="visual-kicker">Visual 2 · Manav Lakhani</p>
         <h2 class="section-heading">Prices climbed faster than paychecks</h2>
         <p>
           <!-- NARRATIVE before Manav's visual -->
@@ -141,10 +109,43 @@
       </div>
     </section>
 
+    <!-- ===================== NARRATIVE BETWEEN VISUALS 2 → 3 ===================== -->
+    <section class="prose" aria-label="Transition">
+      <p>
+        <!-- NARRATIVE bridging CPI → affordability -->
+        narrative text here — bridge from "prices outran wages nationally" to "what does
+        that gap mean for one worker in one county?" Lead the reader into the local,
+        on-the-ground evidence.
+      </p>
+    </section>
+
+    <!-- ===================== VISUAL 3 — AFFORDABILITY (Nikolai) ===================== -->
+    <section class="visual-block" aria-label="County Affordability Explorer">
+      <div class="visual-intro prose">
+        <p class="visual-kicker">Visual 3 · Nikolai Decneut</p>
+        <h2 class="section-heading">How many hours must you work to afford rent where you live?</h2>
+        <p>
+          <!-- NARRATIVE before the affordability visual -->
+          narrative text here — set up the interactive map/chart: invite the reader to
+          find their own county and see the wage-vs-rent gap made local and personal.
+        </p>
+      </div>
+
+      <div class="visual-frame">
+        <!-- VISUAL CODE: this iframe loads your interactive County Affordability Explorer -->
+        <iframe
+          class="viz"
+          src="affordability/index.html"
+          title="County Affordability Explorer (interactive)"
+          loading="lazy"
+          style="height: 1500px;"></iframe>
+      </div>
+    </section>
+
     <!-- ===================== NARRATIVE AFTER VISUAL 3 ===================== -->
     <section class="prose" aria-label="Transition">
       <p>
-        <!-- NARRATIVE after Manav's visual -->
+        <!-- NARRATIVE after the affordability visual -->
         narrative text here — tie the three findings together before the conclusion.
       </p>
     </section>
@@ -164,12 +165,6 @@
       <h2 class="section-heading">About the authors</h2>
       <div class="authors">
         <article class="author-card">
-          <p class="author-name">Nikolai Decneut</p>
-          <p class="author-role">County Affordability Explorer</p>
-          <a class="author-link" href="https://github.com/NikolaiDecneut" target="_blank" rel="noopener">github.com/NikolaiDecneut</a>
-        </article>
-
-        <article class="author-card">
           <p class="author-name">Simon Mehari</p>
           <p class="author-role">Median Household Income</p>
           <a class="author-link" href="https://github.com/simonm41" target="_blank" rel="noopener">github.com/simonm41</a>
@@ -178,8 +173,13 @@
         <article class="author-card">
           <p class="author-name">Manav Lakhani</p>
           <p class="author-role">Consumer Price Index vs. Income</p>
-          <!-- AUTHOR LINK — replace href and text with Manav's GitHub profile -->
           <a class="author-link" href="https://github.com/manav-l" target="_blank" rel="noopener">github.com/manav-l</a>
+        </article>
+
+        <article class="author-card">
+          <p class="author-name">Nikolai Decneut</p>
+          <p class="author-role">County Affordability Explorer</p>
+          <a class="author-link" href="https://github.com/NikolaiDecneut" target="_blank" rel="noopener">github.com/NikolaiDecneut</a>
         </article>
       </div>
     </section>
