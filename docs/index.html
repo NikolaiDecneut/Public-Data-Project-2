@@ -1,1 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Priced Out — When a Full-Time Wage No Longer Covers the Rent</title>
+  <link rel="preconnect" href="https://api.fontshare.com">
+  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <a class="skip-link" href="#story">Skip to content</a>
 
+  <!-- ============================ HEADER / TITLE ============================ -->
+  <header class="site-header">
+    <div class="header-copy">
+      <p class="eyebrow">A DATA 497 Data Narrative</p>
+      <!-- TITLE -->
+      <h1>Priced Out: When a Full-Time Wage No Longer Covers the Rent</h1>
+      <p class="lede">
+        Across the U.S., paychecks have grown — but not fast enough to keep up with
+        the cost of a place to live. This is the story of the gap between what people
+        earn and what it costs to keep a roof overhead.
+      </p>
+    </div>
+
+    <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch color theme">
+      <span aria-hidden="true">◐</span>
+    </button>
+  </header>
+
+  <main id="story" class="page-shell">
+
+    <!-- ===================== ABOUT THE PAGE + AUTHORS ===================== -->
+    <section class="prose" aria-label="About this project">
+      <h2 class="section-heading">About this project</h2>
+      <p>
+        <!-- ABOUT TEXT — replace with a short paragraph about what this page is,
+             the course, and the question it investigates. -->
+        narrative text here — a short description of the page: what it covers, the
+        public question it asks, the datasets it draws on, and who it is for.
+      </p>
+
+      <div class="authors">
+        <article class="author-card">
+          <p class="author-name">Nikolai Decneut</p>
+          <p class="author-role">County Affordability Explorer</p>
+          <a class="author-link" href="https://github.com/NikolaiDecneut" target="_blank" rel="noopener">github.com/NikolaiDecneut</a>
+        </article>
+
+        <article class="author-card">
+          <p class="author-name">Simon Mehari</p>
+          <p class="author-role">Median Household Income</p>
+          <a class="author-link" href="https://github.com/simonm41" target="_blank" rel="noopener">github.com/simonm41</a>
+        </article>
+
+        <article class="author-card">
+          <p class="author-name">Manav Lakhani</p>
+          <p class="author-role">Consumer Price Index vs. Income</p>
+          <!-- AUTHOR LINK — replace href and text with Manav's GitHub profile -->
+          <a class="author-link" href="#" target="_blank" rel="noopener">github profile link here</a>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============================ THE "SO WHAT" ============================ -->
+    <section class="prose sowhat" aria-label="Why this matters">
+      <h2 class="section-heading">Why this matters</h2>
+      <p class="sowhat-lead">
+        <!-- SO-WHAT TEXT — the single most important paragraph. State the takeaway
+             up front: why a public reader should care, in plain language. -->
+        narrative text here — the "so what." Lead with the takeaway: the cost-of-living
+        crisis is, at its core, a wage crisis. Prices rose, but pay did not keep pace —
+        and nowhere is that gap clearer than in what it now costs to afford rent.
+      </p>
+    </section>
+
+    <!-- ===================== VISUAL 1 — AFFORDABILITY (Nikolai) ===================== -->
+    <section class="visual-block" aria-label="County Affordability Explorer">
+      <div class="visual-intro prose">
+        <p class="visual-kicker">Visual 1 · Nikolai Decneut</p>
+        <h2 class="section-heading">How many hours must you work to afford rent where you live?</h2>
+        <p>
+          <!-- NARRATIVE before the affordability visual -->
+          narrative text here — set up the interactive map/chart: invite the reader to
+          find their own county and see the wage-vs-rent gap made local and personal.
+        </p>
+      </div>
+
+      <div class="visual-frame">
+        <!-- VISUAL CODE: this iframe loads your interactive County Affordability Explorer -->
+        <iframe
+          class="viz"
+          src="affordability/index.html"
+          title="County Affordability Explorer (interactive)"
+          loading="lazy"
+          style="height: 1500px;"></iframe>
+      </div>
+    </section>
+
+    <!-- ===================== NARRATIVE BETWEEN VISUALS 1 → 2 ===================== -->
+    <section class="prose" aria-label="Transition">
+      <p>
+        <!-- NARRATIVE bridging affordability → income -->
+        narrative text here — bridge from "rent is unaffordable today" to "but how have
+        wages actually moved over time?" Lead the reader into the income trend.
+      </p>
+    </section>
+
+    <!-- ===================== VISUAL 2 — MEDIAN INCOME (Simon) ===================== -->
+    <section class="visual-block" aria-label="Median Household Income">
+      <div class="visual-intro prose">
+        <p class="visual-kicker">Visual 2 · Simon Mehari</p>
+        <h2 class="section-heading">Earning power has grown — but slowly</h2>
+        <p>
+          <!-- NARRATIVE before Simon's visual -->
+          narrative text here — introduce the median household income trend (1967–2024)
+          and what it reveals about how earnings have changed across five decades.
+        </p>
+      </div>
+
+      <div class="visual-frame">
+        <!-- VISUAL CODE: Simon's median income line chart -->
+        <iframe
+          class="viz"
+          src="simon/index.html"
+          title="US Median Household Income, 1967–2024"
+          loading="lazy"
+          style="height: 760px;"></iframe>
+      </div>
+    </section>
+
+    <!-- ===================== NARRATIVE BETWEEN VISUALS 2 → 3 ===================== -->
+    <section class="prose" aria-label="Transition">
+      <p>
+        <!-- NARRATIVE bridging income → CPI -->
+        narrative text here — bridge from "incomes rose modestly" to "but prices rose
+        too — did they rise faster?" Lead the reader into the CPI comparison.
+      </p>
+    </section>
+
+    <!-- ===================== VISUAL 3 — CPI vs INCOME (Manav) ===================== -->
+    <section class="visual-block" aria-label="Consumer Price Index vs Income">
+      <div class="visual-intro prose">
+        <p class="visual-kicker">Visual 3 · Manav Lakhani</p>
+        <h2 class="section-heading">Prices climbed faster than paychecks</h2>
+        <p>
+          <!-- NARRATIVE before Manav's visual -->
+          narrative text here — introduce the CPI-vs-income comparison and the central
+          finding: the divergence between rising prices and lagging wages.
+        </p>
+      </div>
+
+      <div class="visual-frame">
+        <!-- VISUAL CODE: Manav's visual is not ready yet — placeholder iframe.
+             When ready, point src to "manav/index.html" and set the height. -->
+        <div class="viz-placeholder">
+          <p>Visual code here</p>
+          <p class="viz-placeholder-note">Manav's CPI vs. income chart will be embedded here.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== NARRATIVE AFTER VISUAL 3 ===================== -->
+    <section class="prose" aria-label="Transition">
+      <p>
+        <!-- NARRATIVE after Manav's visual -->
+        narrative text here — tie the three findings together before the conclusion.
+      </p>
+    </section>
+
+    <!-- ============================ CONCLUSION ============================ -->
+    <section class="prose conclusion" aria-label="Conclusion">
+      <h2 class="section-heading">Conclusion</h2>
+      <p>
+        <!-- CONCLUSION TEXT -->
+        narrative text here — close the story. Restate the answer to the opening
+        question and what it means for a public reader.
+      </p>
+    </section>
+
+    <!-- ============================ CITATIONS ============================ -->
+    <section class="prose citations" aria-label="Data sources and citations">
+      <h2 class="section-heading">Data sources &amp; citations</h2>
+      <ul class="citation-list">
+        <li>
+          National Low Income Housing Coalition. <em>Out of Reach 2025.</em>
+          <a href="https://nlihc.org/oor" target="_blank" rel="noopener">https://nlihc.org/oor</a>
+        </li>
+        <li>
+          U.S. Census Bureau. <em>Table A-2. Households by Total Money Income, Race, and Hispanic
+          Origin of Householder: 1967 to 2024.</em> Current Population Survey, ASEC. P60-286.
+          <a href="https://www.census.gov/library/publications/2025/demo/p60-286.html" target="_blank" rel="noopener">census.gov</a>
+        </li>
+        <li>
+          U.S. Bureau of Labor Statistics. <em>Consumer Price Index for All Urban Consumers (CPI-U).</em>
+          <a href="https://www.bls.gov/cpi/" target="_blank" rel="noopener">bls.gov/cpi</a>
+        </li>
+        <!-- Add any additional sources or referenced tutorials/resources here (Chicago style). -->
+      </ul>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <p>DATA 497 · Advanced Topics in Data Visualization · University of Washington</p>
+  </footer>
+
+  <!-- Page-wide dark-mode toggle: also relays the theme into each visual iframe -->
+  <script src="theme.js"></script>
+</body>
+</html>
