@@ -1,0 +1,70 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: whitesmoke;
+    margin: 0;
+    padding: 40px 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    max-width: 1200px;
+    background-color: white;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+}
+
+h1 {
+    margin-top: 0;
+    font-size: 2.2rem;
+    color: black;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.description {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: dimgray;
+    margin-bottom: 40px;
+    text-align: center;
+    background-color: whitesmoke;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.x-axis path,
+.x-axis line,
+.y-axis path,
+.y-axis line {
+    stroke: silver;
+}
+
+.x-axis text,
+.y-axis text {
+    font-size: 12px;
+    fill: dimgray;
+}
+
+.axis-label {
+    font-weight: bold;
+    fill: darkslategray;
+    font-size: 14px;
+}
+
+.tooltip {
+    position: absolute;
+    background: white;
+    border: 1px solid #ccc;
+    padding: 8px 12px;
+    font-size: 13px;
+    border-radius: 6px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    pointer-events: none;
+}
+
+svg {
+    display: block;
+    margin: 0 auto;
+}
