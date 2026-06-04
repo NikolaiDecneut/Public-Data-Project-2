@@ -36,7 +36,7 @@ A "so what" statement up front, plus narrative bridges between each chart, carry
 |---|---|---|---|---|
 | 1 | Median Household Income | Simon Mehari | U.S. median household income, 1967–2024 | Line / area chart |
 | 2 | Consumer Price Index vs. Income | Manav Lakhani | Cumulative % change in CPI vs. average income, 2000–2024 | Interactive line chart |
-| 3 | County Affordability Explorer | Nikolai Decneut | Wage-vs-rent affordability across WA and CA counties | Interactive bubble chart |
+| 3 | County Affordability Explorer | Nikolai Decneut | Wage vs rent affordability across WA and CA counties, 2025 | Interactive bubble chart |
 
 ### County Affordability Explorer (interactive)
 Each bubble represents a single county or metro area across Washington and California, plotting what renters earn against what their housing actually costs. The central measure is the **housing wage** — the hourly pay a full-time worker would need to afford a modest rental without spending more than 30% of their income on housing.
